@@ -1,0 +1,66 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <form method="post">
+                <h3>Available</h3>
+                @foreach (var name in Model.Items.Select(p => p.Name).Distinct())
+                {
+                    <div class="row"><hr width="100%" /></div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p>
+                                @name | Price: $@Model.Items.Where(p => p.Name == name).FirstOrDefault().Price | Stock: @Model.Items.Where(p => p.Name == name && p.Status == 1).Count()<br />
+                                @if (Model.Items.Where(p => p.Name == name && p.Status == 1).Count() != 0)
+                                {
+                                    <button class="btn btn-sm btn-outline-secondary" style="color:deepskyblue;" asp-controller="Home" asp-action="BuyProduct" name="submitButton" value="@name">Buy</button>
+                                }
+                                else
+                                {
+                                    <button disabled="disabled" class="btn btn-sm btn-outline-secondary" style="color:deepskyblue;" asp-controller="Home" asp-action="BuyProduct" name="submitButton" value="@name">Buy</button>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                }
+            </form>
+        </div>
+        <div class="col-4">
+            <form method="post">
+                <h3>In Delivery</h3>
+                @foreach (var item in Model.Items.Where(p => p.Status == 2))
+                {
+                    <div class="row"><hr width="100%" /></div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p>
+                                @item.Name | In Delivery Since : @item.ChangedOn <br />
+                                <button class="btn btn-sm btn-outline-secondary" style="color:deepskyblue;" asp-controller="Home" asp-action="CompleteDelivery" name="submitButton" value="@item.Id">Complete</button>
+                            </p>
+                        </div>
+                    </div>
+                }
+            </form>
+        </div>
+        <div class="col-4">
+            <form method="post">
+                <h3>Completed</h3>
+                @foreach (var item in Model.Items.Where(p => p.Status == 3))
+                {
+                    <div class="row"><hr width="100%" /></div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p>
+                                @item.Name | Finished Delivery On : @item.ChangedOn <br />
+                            </p>
+                        </div>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+</div>
