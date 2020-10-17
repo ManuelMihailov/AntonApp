@@ -1,0 +1,35 @@
+﻿@model AddProductsViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 text-center">
+            <h3>
+                Please log in to proceed
+            </h3>
+            <form class="form" role="form" method="post" asp-action="AddProducts" asp-controller="Home">
+                <div class="form-group">
+                    <label class="control-label">Name</label>
+                    <input type="text" class="form-control" asp-for="@Model.Name" placeholder="Enter Name">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Price</label>
+                    <input type="number" class="form-control" asp-for="@Model.Price" step=".01" placeholder="Enter Price">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Item Count</label>
+                    <input type="number" class="form-control" asp-for="@Model.Count" placeholder="Enter Amount">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Warehouse City</label>
+                    <input type="text" class="form-control" asp-for="@Model.WarehouseCity" placeholder="Enter Warehouse City">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Add</button>&nbsp;
+                    <button type="reset" class="btn btn-primary btn-inverse">Reset</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>

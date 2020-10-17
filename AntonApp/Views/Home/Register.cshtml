@@ -1,0 +1,37 @@
+﻿@model RegisterViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 text-center">
+            <h3>
+                Account Registration
+            </h3>
+            <form class="form" role="form" method="post" asp-action="Register" asp-controller="Home">
+                <div class="form-group">
+                    <label class="control-label">Username</label>
+                    <input type="text" class="form-control" asp-for="@Model.Username" placeholder="Enter Username">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">City</label>
+                    <input type="text" class="form-control" asp-for="@Model.City" placeholder="Enter City Name">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Password</label>
+                    <input type="password" class="form-control" asp-for="@Model.Password" id="password" placeholder="Enter Password">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Confirm Password</label>
+                    <input type="password" class="form-control" asp-for="@Model.ConfirmP" id="password-confirm" placeholder="Enter Password again">
+                </div>
+                <div class="form-group">
+                    <!-- Button -->
+                    <button type="submit" class="btn btn-primary">Register</button>&nbsp;
+                    <button type="reset" class="btn btn-primary btn-inverse">Reset</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+

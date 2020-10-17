@@ -13,5 +13,8 @@ namespace Data.Models
         public int StatusId { get; set; }
         public Status Status { get; set; }
         public DateTime StatusChange { get; set; }
+        public Request Request { get; set; }
+        public Warehouse Warehouse { get; set; }
+        public int WarehouseId { get; set; }
     }
 }

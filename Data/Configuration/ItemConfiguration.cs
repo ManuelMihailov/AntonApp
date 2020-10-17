@@ -18,6 +18,10 @@ namespace Data.Configuration
             builder.HasOne(p=>p.Status)
                 .WithMany(p => p.Items)
                 .HasForeignKey(p => p.StatusId);
+
+            builder.HasOne(p => p.Warehouse)
+                .WithMany(p => p.Items)
+                .HasForeignKey(p => p.WarehouseId);
         }
     }
 }

@@ -11,5 +11,6 @@ namespace Data.Models
         public string Name { get; set; }
         public decimal Price { get; set; }
         public ICollection<Item> Items { get; set; }
+        public Request Request { get; set; }
     }
 }

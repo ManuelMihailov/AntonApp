@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,12 +31,13 @@ namespace AntonApp
             services.AddDbContext<AntonDatabaseContext>();
             services.AddScoped<IStatusesService, StatusesService>();
             services.AddScoped<IProductService, ProductService>();
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddSingleton<IHasher, Hasher>();
+
+
+            services
+               .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+               .AddCookie();
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -58,6 +60,8 @@ namespace AntonApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseAuthentication();
+
 
             app.UseMvc(routes =>
             {

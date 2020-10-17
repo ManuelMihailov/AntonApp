@@ -18,6 +18,10 @@ namespace Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Status> Statuses { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Warehouse> Warehouses { get; set; }
+        public DbSet<Request> Requests { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -30,6 +34,7 @@ namespace Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ItemConfiguration());
+            modelBuilder.ApplyConfiguration(new RequestConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }
